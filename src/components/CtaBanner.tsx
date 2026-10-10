@@ -1,11 +1,9 @@
 import React from 'react';
 import { Download, Video } from 'lucide-react';
 
-interface CtaBannerProps {
-  onInstallApp: () => void;
-}
+export const CtaBanner: React.FC = () => {
+  const APK_DOWNLOAD_URL = 'https://huggingface.co/chatmateofficial/chatmateapp/resolve/main/app-release.apk?download=true';
 
-export const CtaBanner: React.FC<CtaBannerProps> = ({ onInstallApp }) => {
   return (
     <section className="py-20 bg-slate-950 relative overflow-hidden border-t border-slate-900">
       
@@ -25,13 +23,16 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onInstallApp }) => {
         </p>
 
         <div>
-          <button
-            onClick={onInstallApp}
+          <a
+            href={APK_DOWNLOAD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="app-release.apk"
             className="px-9 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-extrabold text-base shadow-2xl shadow-rose-600/40 hover:scale-105 transition-all inline-flex items-center gap-3"
           >
             <Download className="w-5 h-5" />
             <span>Install ChatMate App</span>
-          </button>
+          </a>
         </div>
       </div>
 

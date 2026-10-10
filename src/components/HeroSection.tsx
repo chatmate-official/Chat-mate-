@@ -1,15 +1,13 @@
 import React from 'react';
-import { Video, Download, Shield, Globe, CheckCircle2 } from 'lucide-react';
+import { Download, Shield, Globe, CheckCircle2 } from 'lucide-react';
 
-interface HeroSectionProps {
-  onInstallApp: () => void;
-}
+export const HeroSection: React.FC = () => {
+  const APK_DOWNLOAD_URL = 'https://huggingface.co/chatmateofficial/chatmateapp/resolve/main/app-release.apk?download=true';
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onInstallApp }) => {
   return (
     <section className="relative overflow-hidden pt-10 pb-16 md:pt-16 md:pb-24 bg-slate-950">
       
-      {/* Ambient Background Glow - adjusted z-index and opacity so it never overlaps text */}
+      {/* Ambient Background Glow */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
@@ -33,15 +31,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onInstallApp }) => {
             Experience 1-on-1 random video calls, instant text chat, and social dating discovery with ChatMate.
           </p>
 
-          {/* Single Clear Install Action */}
+          {/* Pure HTML Direct Link Button */}
           <div className="flex justify-center pt-2">
-            <button
-              onClick={onInstallApp}
+            <a
+              href={APK_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="app-release.apk"
               className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 hover:from-rose-500 hover:to-pink-500 text-white font-extrabold text-base sm:text-lg shadow-2xl shadow-rose-600/40 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
             >
               <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               <span>Install App Now</span>
-            </button>
+            </a>
           </div>
 
           {/* Symmetrical Responsive Trust Badges */}
@@ -105,12 +106,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onInstallApp }) => {
                 <span className="font-bold text-rose-400">Ananya:</span>
                 <span>"Hey! Love music too! What genre do you like?"</span>
               </div>
-              <button
-                onClick={onInstallApp}
+              <a
+                href={APK_DOWNLOAD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="app-release.apk"
                 className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-md shrink-0"
               >
                 Install App ⚡
-              </button>
+              </a>
             </div>
           </div>
 

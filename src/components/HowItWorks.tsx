@@ -1,11 +1,9 @@
 import React from 'react';
 import { MousePointer, Sliders, Zap, ArrowRight } from 'lucide-react';
 
-interface HowItWorksProps {
-  onLaunchApp: () => void;
-}
+export const HowItWorks: React.FC = () => {
+  const APK_DOWNLOAD_URL = 'https://huggingface.co/chatmateofficial/chatmateapp/resolve/main/app-release.apk?download=true';
 
-export const HowItWorks: React.FC<HowItWorksProps> = ({ onLaunchApp }) => {
   const steps = [
     {
       num: '01',
@@ -63,13 +61,16 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onLaunchApp }) => {
         </div>
 
         <div className="text-center pt-4">
-          <button
-            onClick={onLaunchApp}
+          <a
+            href={APK_DOWNLOAD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="app-release.apk"
             className="px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold text-sm shadow-xl shadow-rose-600/30 hover:scale-105 transition-all inline-flex items-center gap-2"
           >
             <span>Install ChatMate</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
       </div>
