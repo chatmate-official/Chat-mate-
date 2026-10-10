@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { FeaturesSection } from './components/FeaturesSection';
@@ -7,24 +7,21 @@ import { SafetySection } from './components/SafetySection';
 import { TestimonialsAndFaq } from './components/TestimonialsSection';
 import { CtaBanner } from './components/CtaBanner';
 import { Footer } from './components/Footer';
-import { LaunchAppModal } from './components/LaunchAppModal';
 
 export default function App() {
-  const [showInstallModal, setShowInstallModal] = useState(false);
-  const [customApkUrl, setCustomApkUrl] = useState('/ChatMate.apk');
+  // New Hugging Face direct APK download link provided by the user (app-release.apk)
+  const HUGGINGFACE_NEW_APK_URL = 'https://huggingface.co/chatmateofficial/chatmateapp/resolve/main/app-release.apk?download=true';
 
   const handleInstallApp = () => {
-    const downloadUrl = customApkUrl || '/ChatMate.apk';
-    
-    // Direct file download from public/ChatMate.apk
+    // 1-Click Direct Download Trigger
     const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'ChatMate.apk';
+    link.href = HUGGINGFACE_NEW_APK_URL;
+    link.setAttribute('download', 'app-release.apk');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
-    setShowInstallModal(true);
   };
 
   return (
@@ -53,15 +50,6 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Install App Modal */}
-      {showInstallModal && (
-        <LaunchAppModal
-          onClose={() => setShowInstallModal(false)}
-          customApkUrl={customApkUrl}
-          setCustomApkUrl={setCustomApkUrl}
-        />
-      )}
 
     </div>
   );

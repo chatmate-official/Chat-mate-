@@ -24,17 +24,16 @@ const ai = new GoogleGenAI({
   },
 });
 
-// Serve ChatMate.apk directly from public/ChatMate.apk
-app.get(['/ChatMate.apk', '/api/download/app'], (req, res) => {
-  const localApkPath = path.resolve(__dirname, 'public', 'ChatMate.apk');
+const HUGGINGFACE_APK_URL = 'https://huggingface.co/chatmateofficial/chatmateapp/resolve/main/app-release.apk?download=true';
 
-  if (fs.existsSync(localApkPath)) {
-    res.download(localApkPath, 'ChatMate.apk');
+// Direct redirect to new Hugging Face app-release.apk download
+app.get(['/ChatMate.apk', '/app-release.apk', '/api/download/app'], (req, res) => {
+  const localApkPath = path.resolve(__dirname, 'public', 'app-release.apk');
+
+  if (fs.existsSync(localApkPath) && fs.statSync(localApkPath).size > 200) {
+    res.download(localApkPath, 'app-release.apk');
   } else {
-    // If user hasn't added public/ChatMate.apk file yet, serve dummy fallback binary
-    res.setHeader('Content-Disposition', 'attachment; filename="ChatMate.apk"');
-    res.setHeader('Content-Type', 'application/vnd.android.package-archive');
-    res.send(Buffer.from('ChatMate Android Application Package'));
+    res.redirect(HUGGINGFACE_APK_URL);
   }
 });
 
