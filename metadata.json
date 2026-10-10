@@ -1,0 +1,6 @@
+{
+  "name": "ChatMate - Live Random Chat & Video Call",
+  "description": "Connect instantly with new people around the globe. Live video calling, random text chat, and dating discovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
